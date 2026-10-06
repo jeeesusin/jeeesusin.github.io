@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CalculaFácil — Calculadoras online gratis</title>
+<meta name="description" content="Calculadoras online gratuitas para porcentajes, IVA, descuentos, edad, fechas, consumo y más.">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#172033;--muted:#687386;--accent:#4f46e5;--border:#e7e9ef}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}
+header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:3}.nav{max-width:1100px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:22px;font-weight:800}.logo span{color:var(--accent)}
+nav a{margin-left:20px;text-decoration:none;color:var(--muted);font-weight:600}
+.hero{max-width:1100px;margin:0 auto;padding:58px 22px 35px}.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.02;margin:0 0 16px;max-width:760px}.hero p{font-size:19px;color:var(--muted);max-width:700px;margin:0}
+.search{max-width:1100px;margin:0 auto 26px;padding:0 22px}.search input{width:100%;padding:17px 18px;border:1px solid var(--border);border-radius:14px;font-size:16px;background:#fff;outline:none}
+.grid{max-width:1100px;margin:auto;padding:0 22px 50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:23px;box-shadow:0 6px 22px #1b255a08}.card h2{font-size:20px;margin:0 0 8px}.card p{color:var(--muted);line-height:1.5;min-height:48px}.card button{border:0;background:var(--accent);color:#fff;padding:11px 15px;border-radius:10px;font-weight:700;cursor:pointer}.tool{display:none;margin-top:15px;padding-top:15px;border-top:1px solid var(--border)}.tool input,.tool select{width:100%;padding:11px;margin:5px 0;border:1px solid var(--border);border-radius:9px}.result{margin-top:12px;font-weight:800}.ad{max-width:1100px;margin:0 auto 30px;padding:0 22px}.adbox{height:100px;border:1px dashed #cbd0dc;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#9aa1af;background:#fff}
+footer{padding:35px 22px;background:#111827;color:#cbd5e1;text-align:center}.small{font-size:13px}
+@media(max-width:650px){nav{display:none}.hero{padding-top:40px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">Calcula<span>Fácil</span></div><nav><a href="#calculadoras">Calculadoras</a><a href="#sobre">Sobre nosotros</a></nav></div></header>
+<main>
+<section class="hero"><h1>Calcula lo que necesitas, en segundos.</h1><p>Herramientas gratuitas, sencillas y pensadas para resolver cálculos cotidianos sin complicaciones.</p></section>
+<div class="search"><input id="search" placeholder="Buscar una calculadora…"></div>
+<div class="ad"><div class="adbox">Espacio publicitario</div></div>
+<section class="grid" id="calculadoras">
+<article class="card" data-name="porcentaje"><h2>Porcentajes</h2><p>Calcula porcentajes, aumentos y reducciones rápidamente.</p><button onclick="toggle('porcentaje')">Abrir</button><div class="tool" id="porcentaje"><input id="pbase" type="number" placeholder="Cantidad"><input id="ppct" type="number" placeholder="Porcentaje (%)"><button onclick="pct()">Calcular</button><div class="result" id="rp"></div></div></article>
+<article class="card" data-name="iva"><h2>IVA</h2><p>Añade o quita IVA de una cantidad.</p><button onclick="toggle('iva')">Abrir</button><div class="tool" id="iva"><input id="ivaBase" type="number" placeholder="Cantidad"><select id="ivaRate"><option value="21">21%</option><option value="10">10%</option><option value="4">4%</option></select><button onclick="iva()">Calcular</button><div class="result" id="ri"></div></div></article>
+<article class="card" data-name="descuento"><h2>Descuentos</h2><p>Descubre cuánto pagarás después de aplicar un descuento.</p><button onclick="toggle('descuento')">Abrir</button><div class="tool" id="descuento"><input id="price" type="number" placeholder="Precio"><input id="disc" type="number" placeholder="Descuento (%)"><button onclick="discount()">Calcular</button><div class="result" id="rd"></div></div></article>
+<article class="card" data-name="edad"><h2>Calculadora de edad</h2><p>Calcula tu edad a partir de tu fecha de nacimiento.</p><button onclick="toggle('edad')">Abrir</button><div class="tool" id="edad"><input id="birth" type="date"><button onclick="age()">Calcular</button><div class="result" id="ra"></div></div></article>
+<article class="card" data-name="regla de tres"><h2>Regla de tres</h2><p>Resuelve proporciones de forma automática.</p><button onclick="toggle('regla')">Abrir</button><div class="tool" id="regla"><input id="a" type="number" placeholder="A"><input id="b" type="number" placeholder="B"><input id="c" type="number" placeholder="C"><button onclick="rule()">Calcular</button><div class="result" id="rr"></div></div></article>
+<article class="card" data-name="consumo coche gasolina"><h2>Consumo del coche</h2><p>Calcula litros/100 km y el coste aproximado de un viaje.</p><button onclick="toggle('coche')">Abrir</button><div class="tool" id="coche"><input id="litros" type="number" placeholder="Litros consumidos"><input id="km" type="number" placeholder="Kilómetros"><input id="fuel" type="number" placeholder="Precio por litro (€)"><button onclick="car()">Calcular</button><div class="result" id="rc"></div></div></article>
+<article class="card" data-name="interes"><h2>Interés simple</h2><p>Calcula el interés generado por un capital.</p><button onclick="toggle('interes')">Abrir</button><div class="tool" id="interes"><input id="capital" type="number" placeholder="Capital (€)"><input id="rate" type="number" placeholder="Interés anual (%)"><input id="years" type="number" placeholder="Años"><button onclick="interest()">Calcular</button><div class="result" id="rint"></div></div></article>
+<article class="card" data-name="precio unitario"><h2>Precio unitario</h2><p>Compara cuánto cuesta realmente cada unidad.</p><button onclick="toggle('unidad')">Abrir</button><div class="tool" id="unidad"><input id="total" type="number" placeholder="Precio total (€)"><input id="units" type="number" placeholder="Número de unidades"><button onclick="unit()">Calcular</button><div class="result" id="ru"></div></div></article>
+</section>
+</main>
+<footer id="sobre"><strong>CalculaFácil</strong><p class="small">Herramientas gratuitas para cálculos cotidianos. Primera versión.</p></footer>
+<script>
+function toggle(id){document.querySelectorAll('.tool').forEach(x=>{if(x.id!==id)x.style.display='none'});let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block'}
+const n=x=>parseFloat(document.getElementById(x).value)||0, eur=x=>x.toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+function pct(){let b=n('pbase'),p=n('ppct');document.getElementById('rp').textContent=`Resultado: ${b*p/100} (${p}% de ${b})`}
+function iva(){let b=n('ivaBase'),r=n('ivaRate');document.getElementById('ri').textContent=`Con IVA: ${eur(b*(1+r/100))} · IVA: ${eur(b*r/100)}`}
+function discount(){let p=n('price'),d=n('disc');document.getElementById('rd').textContent=`Precio final: ${eur(p*(1-d/100))} · Ahorras: ${eur(p*d/100)}`}
+function age(){let v=document.getElementById('birth').value;if(!v)return;let b=new Date(v),t=new Date(),a=t.getFullYear()-b.getFullYear();if(t<new Date(t.getFullYear(),b.getMonth(),b.getDate()))a--;document.getElementById('ra').textContent=`Edad: ${a} años`}
+function rule(){let A=n('a'),B=n('b'),C=n('c');document.getElementById('rr').textContent=C?`Resultado: ${(B*C/A).toLocaleString('es-ES')}`:'Completa los datos'}
+function car(){let l=n('litros'),k=n('km'),f=n('fuel');document.getElementById('rc').textContent=`Consumo: ${(l/k*100).toFixed(2)} L/100 km · Coste: ${eur(l*f)}`}
+function interest(){let c=n('capital'),r=n('rate'),y=n('years');document.getElementById('rint').textContent=`Interés: ${eur(c*r/100*y)} · Total: ${eur(c*(1+r/100*y))}`}
+function unit(){let t=n('total'),u=n('units');document.getElementById('ru').textContent=`Precio por unidad: ${eur(t/u)}`}
+document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.name.includes(q)||!q?'block':'none')})
+</script>
+</body></html>
